@@ -5,8 +5,8 @@ public class Cell {
 	private boolean revealed;
 	//value = -1: bomb 
 	//value != -1: number of mines around the cell
-	//unrevealed: true = unrevealed cell
-	//unrevealed: false = revealed cell
+	//revealed: true = revealed cell
+	//revealed: false = unrevealed cell
 	public Cell(int v, boolean r) {
 		value = v;
 		revealed = r;
