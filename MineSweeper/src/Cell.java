@@ -2,14 +2,14 @@
 public class Cell {
 	
 	private int value;
-	private boolean unrevealed;
+	private boolean revealed;
 	//value = -1: bomb 
 	//value != -1: number of mines around the cell
 	//unrevealed: true = unrevealed cell
 	//unrevealed: false = revealed cell
 	public Cell(int v, boolean r) {
 		value = v;
-		unrevealed = r;
+		revealed = r;
 	}
 	
 	public int getValue() {
@@ -21,10 +21,10 @@ public class Cell {
 	}
 	
 	public boolean getReveal() {
-		return unrevealed;
+		return revealed;
 	}
 	
 	public void setReveal(boolean r) {
-		unrevealed = r;
+		revealed = r;
 	}
 }
