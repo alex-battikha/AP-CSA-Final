@@ -3,13 +3,17 @@ public class Cell {
 	
 	private int value;
 	private boolean revealed;
+	private boolean flag;
 	//value = -1: bomb 
 	//value != -1: number of mines around the cell
 	//revealed: true = revealed cell
 	//revealed: false = unrevealed cell
-	public Cell(int v, boolean r) {
+	//flag: true = there is a flag on cell
+	//flag: false = no flag on cell
+	public Cell(int v, boolean r, boolean f) {
 		value = v;
 		revealed = r;
+		flag = f;
 	}
 	
 	public int getValue() {
@@ -26,5 +30,13 @@ public class Cell {
 	
 	public void setReveal(boolean r) {
 		revealed = r;
+	}
+	
+	public boolean getFlag() {
+		return flag;
+	}
+	
+	public void setFlag(boolean f) {
+		flag = f;
 	}
 }
