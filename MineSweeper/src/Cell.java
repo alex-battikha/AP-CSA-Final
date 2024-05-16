@@ -1,9 +1,9 @@
 
 public class Cell {
 	
-	private int value;
-	private boolean revealed;
-	private boolean flag;
+	public int value;
+	public boolean revealed;
+	public boolean flag;
 	//value = -1: bomb 
 	//value != -1: number of mines around the cell
 	//revealed: true = revealed cell
