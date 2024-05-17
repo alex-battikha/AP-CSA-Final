@@ -1,3 +1,5 @@
+import java.awt.Graphics;
+
 public class CellGUI extends Cell{
 	public int x;
 	public int y;
