@@ -46,6 +46,7 @@ public class GUI implements ActionListener {
 	}
 
 	
+	@SuppressWarnings({ "deprecation"})
 	public void mapGenerator(int s) {
 		buttonPanel = new JPanel();
 		buttonPanel.setVisible(true);
@@ -57,13 +58,13 @@ public class GUI implements ActionListener {
 		
 		//fix since resize() is depracated
 		if(s == 8) {
-			frame.resize(600, 600);
+			frame.resize(650, 650);
 		}
 		else if(s == 14) {
-			frame.resize(800, 800);
+			frame.resize(850, 850);
 		}
 		else if(s == 20) {
-			frame.resize(1000, 1000);
+			frame.resize(1050, 1050);
 		}
 		
 		for (int row = 0; row < buttons.length; row++) {
@@ -74,7 +75,6 @@ public class GUI implements ActionListener {
 				buttonPanel.add(buttons[row][col]);
 			}
 		}
-		
 		frame.add(buttonPanel);
 		
 		frame.revalidate();
@@ -100,7 +100,13 @@ public class GUI implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
+		for(int i = 0; i < buttons.length; i++) {
+			for(int j = 0; j < buttons[0].length; j++) {
+				if(e.getSource() == buttons[i][j]) {
+					System.out.println("Clicked");
+				}
+			}
+		}
 		
 	}
 	

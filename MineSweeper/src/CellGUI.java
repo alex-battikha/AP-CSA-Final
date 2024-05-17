@@ -11,6 +11,7 @@ public class CellGUI extends Cell{
 	}
 	
 	public void paint(Graphics g) {
+		
 	}
 	
 }
