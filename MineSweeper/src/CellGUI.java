@@ -6,11 +6,11 @@ public class CellGUI{
 	public int y;
 	public int value;
 	private enum State {
-		UNKOWN,
+		UNKNOWN,
 		REVEAL,
 		FLAG,
 	}
-	State state = State.UNKOWN;
+	State state = State.UNKNOWN;
 	
 	public CellGUI(int xi, int yi, int v) {
 		x = xi;
@@ -27,7 +27,7 @@ public class CellGUI{
 	}
 	
 	public void hide() {
-		state = State.UNKOWN;
+		state = State.UNKNOWN;
 	}
 	
 	public void paint(Graphics g) {
@@ -35,7 +35,7 @@ public class CellGUI{
 		g.setColor(Color.green);
 		g.drawRect(x, y, 50, 50);
 		switch (state) {
-		case UNKOWN:
+		case UNKNOWN:
 			break;
 		case REVEAL:
 			g.setColor(Color.gray);
