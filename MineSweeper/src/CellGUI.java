@@ -31,9 +31,10 @@ public class CellGUI{
 	}
 	
 	public void paint(Graphics g) {
-		switch (state) {
+
 		g.setColor(Color.green);
 		g.drawRect(x, y, 50, 50);
+		switch (state) {
 		case UNKOWN:
 			break;
 		case REVEAL:
