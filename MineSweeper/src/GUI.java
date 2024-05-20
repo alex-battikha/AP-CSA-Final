@@ -22,7 +22,7 @@ public class GUI implements ActionListener {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         
         dropdownGen();
-        mapGenerator(size); // Call mapGenerator with the default size
+        mapGenerator(size);
 
         frame.pack();
         frame.setLocationRelativeTo(null);
