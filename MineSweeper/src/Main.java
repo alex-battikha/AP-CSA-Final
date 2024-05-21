@@ -4,7 +4,7 @@ public class Main {
 	
 	
 	public static void main(String[] args) {
-		GUI2 gui = new GUI2();
+		GUI gui = new GUI();
 		gui.main(args);
 	}
 	

@@ -1,5 +1,11 @@
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.JLayeredPane;
 public class CellGUI{
 	public int x;
 	public int y;
@@ -25,10 +31,17 @@ public class CellGUI{
 		}
 	}
 	
-	public void flag() {
-		g.drawRect(x, y, 50, 50);
-		//g.drawImage("assets/flag.png");
-	}
+	public void flag() { 
+		JLayeredPane EverythingButPlayer = new JLayeredPane();
+
+		BufferedImage img = null;
+	    try {
+	        img = ImageIO.read(new File("assets.flag.png"));
+	    } catch (IOException e) {
+	    }
+	    Graphics g = img.getGraphics();
+	    g.drawImage(img,0, 0, EverythingButPlayer);
+		}
 	
 	public void hide() {
 		g.setColor(Color.green);
