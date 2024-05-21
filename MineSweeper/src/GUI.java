@@ -8,10 +8,12 @@ public class GUI implements ActionListener, MouseListener {
     JPanel buttonPanel;
     JButton[][] buttons;
     JComboBox<String> c1;
-    CellGUI cg;
+
     CellGUI[][] cellGUIs;
     Icon flagIcon = new ImageIcon("assets/flag.png");
     
+
+    Moves listOfMoves = new Moves();
     static int size = 8; // Initialize size with a default value
 
     public static void main(String[] args) {
@@ -19,7 +21,6 @@ public class GUI implements ActionListener, MouseListener {
             GUI gui = new GUI();
             gui.createAndShowGUI();
         });
-        
     }
 
     public void createAndShowGUI() {
@@ -94,8 +95,9 @@ public class GUI implements ActionListener, MouseListener {
     //right mouse click
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e)) {
+        	
             JButton button = (JButton) e.getSource();
-            //makeMove(button.getClientProperty("row"), button.getClientProperty("column"));
+            listOfMoves.makeMove((int) button.getClientProperty("row"), (int) button.getClientProperty("column"));
             //cellGUIs[(int) button.getClientProperty("row")][(int) button.getClientProperty("column")].flag();
             int row = (int) button.getClientProperty("row");
             int column = (int) button.getClientProperty("column");
