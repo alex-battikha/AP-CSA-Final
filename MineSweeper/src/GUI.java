@@ -85,8 +85,9 @@ public class GUI implements ActionListener, MouseListener {
 
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e)) {
-        	listOfMoves.makeMove(button.getClientProperty("row"), button.getClientProperty("column"));
+        	
             JButton button = (JButton) e.getSource();
+            listOfMoves.makeMove(button.getClientProperty("row"), button.getClientProperty("column"));
             //makeMove(button.getClientProperty("row"), button.getClientProperty("column"));
             System.out.println("Right Clicked on button at row: " + button.getClientProperty("row") +
                     ", column: " + button.getClientProperty("column"));
