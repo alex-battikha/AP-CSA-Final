@@ -20,6 +20,9 @@ public class CellGUI{
 			g.setColor(Color.black);
 			g.drawOval(x+25, y+25, 10, 10);
 		}
+		else {
+			g.drawString(value + "", x+20, y+20);
+		}
 	}
 	
 	public void flag() {
