@@ -1,4 +1,5 @@
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 
@@ -8,6 +9,8 @@ public class GUI implements ActionListener, MouseListener {
     JButton[][] buttons;
     JComboBox<String> c1;
     CellGUI cg;
+    CellGUI[][] cellGUIs;
+    Icon flagIcon = new ImageIcon("assets/flag.png");
     
     static int size = 8; // Initialize size with a default value
 
@@ -52,6 +55,7 @@ public class GUI implements ActionListener, MouseListener {
 
         buttonPanel = new JPanel(new GridLayout(s, s));
         buttons = new JButton[s][s];
+        cellGUIs = new CellGUI[s][s];
 
         for (int row = 0; row < s; row++) {
             for (int col = 0; col < s; col++) {
@@ -66,6 +70,9 @@ public class GUI implements ActionListener, MouseListener {
                 buttons[row][col].addActionListener(this);
                 buttons[row][col].setText("");
                 buttonPanel.add(buttons[row][col]);
+                
+                cellGUIs[row][col] = new CellGUI(0);
+
             }
         }
 
@@ -84,15 +91,30 @@ public class GUI implements ActionListener, MouseListener {
         frame.revalidate();
     }
 
+    //right mouse click
     public void mouseClicked(MouseEvent e) {
         if (SwingUtilities.isRightMouseButton(e)) {
             JButton button = (JButton) e.getSource();
             //makeMove(button.getClientProperty("row"), button.getClientProperty("column"));
+            //cellGUIs[(int) button.getClientProperty("row")][(int) button.getClientProperty("column")].flag();
+            int row = (int) button.getClientProperty("row");
+            int column = (int) button.getClientProperty("column");
+            
+            if(cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
+            	cellGUIs[row][column].flag();
+            	buttons[row][column].setIcon(flagIcon);
+            }
+            else if(cellGUIs[row][column].getState() == CellGUI.States.FLAGGED) {
+            	cellGUIs[row][column].hide();
+            	buttons[row][column].setIcon(null);
+            }
+            
             System.out.println("Right Clicked on button at row: " + button.getClientProperty("row") +
                     ", column: " + button.getClientProperty("column"));
         }
     }
     
+    //left mouse click
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == c1) {
             mapDifficulty(c1.getSelectedItem());
