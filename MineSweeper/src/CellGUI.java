@@ -1,57 +1,38 @@
 import java.awt.Color;
 import java.awt.Graphics;
-
 public class CellGUI{
 	public int x;
 	public int y;
 	public int value;
-	private enum State {
-		UNKOWN,
-		REVEAL,
-		FLAG,
-	}
-	State state = State.UNKOWN;
+	Graphics g;
 	
-	public CellGUI(int xi, int yi, int v) {
+	public CellGUI(int xi, int yi, int v, Graphics g) {
 		x = xi;
 		y = yi;
 		value = v;
+		this.g = g;
 	}
 	
 	public void reveal() {
-		state = State.REVEAL;
-	}
-	
-	public void flag() {
-		state = State.FLAG;
-	}
-	
-	public void hide() {
-		state = State.UNKOWN;
-	}
-	
-	public void paint(Graphics g) {
-
-		g.setColor(Color.green);
+		g.setColor(Color.gray);
 		g.drawRect(x, y, 50, 50);
-		switch (state) {
-		case UNKOWN:
-			break;
-		case REVEAL:
-			g.setColor(Color.gray);
-			g.drawRect(x, y, 50, 50);
-			if (value == -1) {
-				g.setColor(Color.black);
-				g.drawOval(x+25, y+25, 10, 10);
-			}
-			else {
-				g.drawString("" + value, x, y);
-			}
-			break;
-		case FLAG:
-			g.drawRect(x, y, 50, 50);
-			//todo draw flag
+		if (value == -1) {
+			g.setColor(Color.black);
+			g.drawOval(x+25, y+25, 10, 10);
+		}
+		else {
+			g.drawString(value + "", x+20, y+20);
 		}
 	}
 	
+	public void flag() {
+		g.drawRect(x, y, 50, 50);
+		//g.drawImage("assets/flag.png");
+	}
+	
+	public void hide() {
+		g.setColor(Color.green);
+		g.drawRect(x, y, 50, 50);
+	}
 }
+

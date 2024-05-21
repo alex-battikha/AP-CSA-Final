@@ -3,7 +3,11 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Moves {
-	Stack<Pose2d> moves = new Stack<>();
+	private Stack<Pose2d> moves;
+	
+	public Moves() {
+		moves = new Stack<>()
+	}
 	
 	public void makeMove(int x, int y) {
 		moves.add(new Pose2d(x,y));
