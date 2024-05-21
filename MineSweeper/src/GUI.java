@@ -10,7 +10,7 @@ public class GUI implements ActionListener, MouseListener {
     JComboBox<String> c1;
 
     CellGUI[][] cellGUIs;
-    Icon flagIcon = new ImageIcon("assets/flag.png");
+    Icon flagIcon = new ImageIcon("assets/flag-80.png");
     
 
     Moves listOfMoves = new Moves();
@@ -98,7 +98,6 @@ public class GUI implements ActionListener, MouseListener {
         	
             JButton button = (JButton) e.getSource();
             listOfMoves.makeMove((int) button.getClientProperty("row"), (int) button.getClientProperty("column"));
-            //cellGUIs[(int) button.getClientProperty("row")][(int) button.getClientProperty("column")].flag();
             int row = (int) button.getClientProperty("row");
             int column = (int) button.getClientProperty("column");
             
@@ -118,13 +117,19 @@ public class GUI implements ActionListener, MouseListener {
     
     //left mouse click
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == c1) {
+        JButton button = (JButton) e.getSource();
+
+    	int row = (int) button.getClientProperty("row");
+        int column = (int) button.getClientProperty("column");
+    	
+    	if (e.getSource() == c1) {
             mapDifficulty(c1.getSelectedItem());
         } else {
             for (int i = 0; i < buttons.length; i++) {
                 for (int j = 0; j < buttons[0].length; j++) {
                     if (e.getSource() == buttons[i][j]) {
                         System.out.println("Clicked");
+                        cellGUIs[row][column].reveal();
                     }
                 }
             }
