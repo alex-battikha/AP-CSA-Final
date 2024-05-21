@@ -35,10 +35,10 @@ public class CellGUI2 {
     }
 
     public void reveal() {
-        state = 1; // Set the state to revealed
+        state = 1; // revealed
     }
 
     public void flag() {
-        state = 2; // Set the state to flagged
+        state = 2; // flagged
     }
 }

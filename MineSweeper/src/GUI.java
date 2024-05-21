@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUI implements ActionListener {
+public class GUI implements ActionListener, MouseListener {
     JFrame frame;
     JPanel buttonPanel;
     JButton[][] buttons;
@@ -58,6 +58,11 @@ public class GUI implements ActionListener {
                 buttons[row][col] = new JButton();
                 buttons[row][col].setFocusable(false);
                 buttons[row][col].setFont(new Font("HV Boli", Font.BOLD, 12));
+                buttons[row][col].addMouseListener(this);
+
+                buttons[row][col].putClientProperty("row", row);
+                buttons[row][col].putClientProperty("column", col); 
+                
                 buttons[row][col].addActionListener(this);
                 buttons[row][col].setText("");
                 buttonPanel.add(buttons[row][col]);
@@ -79,7 +84,14 @@ public class GUI implements ActionListener {
         frame.revalidate();
     }
 
-    @Override
+    public void mouseClicked(MouseEvent e) {
+        if (SwingUtilities.isRightMouseButton(e)) {
+            JButton button = (JButton) e.getSource();
+            System.out.println("Right Clicked on button at row: " + button.getClientProperty("row") +
+                    ", column: " + button.getClientProperty("column"));
+        }
+    }
+    
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == c1) {
             mapDifficulty(c1.getSelectedItem());
@@ -93,4 +105,28 @@ public class GUI implements ActionListener {
             }
         }
     }
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
 }

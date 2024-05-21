@@ -85,10 +85,9 @@ public class GUI2 implements ActionListener {
             for (int i = 0; i < cells.length; i++) {
                 for (int j = 0; j < cells[0].length; j++) {
                     if (e.getSource() == cells[i][j]) {
-                        // Handle the click on CellGUI instance
-                        // For example, you can reveal or flag the cell
-                        // cells[i][j].reveal(); 
-                        cells[i][j].flag(); 
+                        
+                        cells[i][j].reveal(); 
+                        //cells[i][j].flag(); 
                         // System.out.println("Clicked");
                     }
                 }

@@ -27,7 +27,7 @@ public class CellGUI{
 	
 	public void flag() {
 		g.drawRect(x, y, 50, 50);
-		//display flag image in assets/flag.png
+		//g.drawImage("assets/flag.png");
 	}
 	
 	public void hide() {
