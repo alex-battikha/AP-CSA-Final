@@ -2,12 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUI implements ActionListener {
+public class GUI2 implements ActionListener {
     JFrame frame;
     JPanel buttonPanel;
-    JButton[][] buttons;
+    CellGUI2[][] cells; // Array of CellGUI instances
     JComboBox<String> c1;
-    CellGUI cg;
     
     static int size = 8; // Initialize size with a default value
 
@@ -16,7 +15,6 @@ public class GUI implements ActionListener {
             GUI gui = new GUI();
             gui.createAndShowGUI();
         });
-        
     }
 
     public void createAndShowGUI() {
@@ -31,7 +29,6 @@ public class GUI implements ActionListener {
         frame.setVisible(true);
         
         frame.setSize(800, 800);
-
     }
 
     public void dropdownGen() {
@@ -50,22 +47,23 @@ public class GUI implements ActionListener {
             frame.remove(buttonPanel);
         }
 
-        buttonPanel = new JPanel(new GridLayout(s, s));
-        buttons = new JButton[s][s];
-
-        for (int row = 0; row < s; row++) {
-            for (int col = 0; col < s; col++) {
-                buttons[row][col] = new JButton();
-                buttons[row][col].setFocusable(false);
-                buttons[row][col].setFont(new Font("HV Boli", Font.BOLD, 12));
-                buttons[row][col].addActionListener(this);
-                buttons[row][col].setText("");
-                buttonPanel.add(buttons[row][col]);
+        buttonPanel = new JPanel() {
+            @Override
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                for (int row = 0; row < s; row++) {
+                    for (int col = 0; col < s; col++) {
+                        cells[row][col].draw(g); // Draw each CellGUI instance
+                    }
+                }
             }
-        }
+        };
 
+        buttonPanel.setPreferredSize(new Dimension(s * 50, s * 50)); // Set preferred size
         frame.add(buttonPanel, BorderLayout.CENTER);
+        frame.revalidate(); // Revalidate the frame
     }
+
 
     public void mapDifficulty(Object object) {
         if (object.equals("Easy")) {
@@ -84,10 +82,14 @@ public class GUI implements ActionListener {
         if (e.getSource() == c1) {
             mapDifficulty(c1.getSelectedItem());
         } else {
-            for (int i = 0; i < buttons.length; i++) {
-                for (int j = 0; j < buttons[0].length; j++) {
-                    if (e.getSource() == buttons[i][j]) {
-                        System.out.println("Clicked");
+            for (int i = 0; i < cells.length; i++) {
+                for (int j = 0; j < cells[0].length; j++) {
+                    if (e.getSource() == cells[i][j]) {
+                        // Handle the click on CellGUI instance
+                        // For example, you can reveal or flag the cell
+                        // cells[i][j].reveal(); 
+                        cells[i][j].flag(); 
+                        // System.out.println("Clicked");
                     }
                 }
             }
