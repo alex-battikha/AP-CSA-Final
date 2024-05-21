@@ -36,7 +36,7 @@ public class CellGUI{
 
 		BufferedImage img = null;
 	    try {
-	        img = ImageIO.read(new File("flag.png"));
+	        img = ImageIO.read(new File("assets.flag.png"));
 	    } catch (IOException e) {
 	    }
 	    Graphics g = img.getGraphics();
