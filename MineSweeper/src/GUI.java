@@ -11,6 +11,9 @@ public class GUI implements ActionListener, MouseListener {
 
     CellGUI[][] cellGUIs;
     Icon flagIcon = new ImageIcon("assets/flag-80.png");
+    Icon flagIcon2 = new ImageIcon("assets/flag-50.png");
+    Icon flagIcon3 = new ImageIcon("assets/flag-20.png");
+
     
 
     Moves listOfMoves = new Moves();
@@ -68,7 +71,7 @@ public class GUI implements ActionListener, MouseListener {
                 buttons[row][col].putClientProperty("row", row);
                 buttons[row][col].putClientProperty("column", col); 
                 
-                buttons[row][col].addActionListener(this);
+//                buttons[row][col].addActionListener(this);
                 buttons[row][col].setText("");
                 buttonPanel.add(buttons[row][col]);
                 
@@ -94,16 +97,28 @@ public class GUI implements ActionListener, MouseListener {
 
     //right mouse click
     public void mouseClicked(MouseEvent e) {
-        if (SwingUtilities.isRightMouseButton(e)) {
+        JButton button = (JButton) e.getSource();
+        button.requestFocusInWindow();
+        int row = (int) button.getClientProperty("row");
+        int column = (int) button.getClientProperty("column");
+        
+        
+        
+        if (e.getButton() == 3) {
         	
-            JButton button = (JButton) e.getSource();
             listOfMoves.makeMove((int) button.getClientProperty("row"), (int) button.getClientProperty("column"));
-            int row = (int) button.getClientProperty("row");
-            int column = (int) button.getClientProperty("column");
             
             if(cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
             	cellGUIs[row][column].flag();
-            	buttons[row][column].setIcon(flagIcon);
+            	if(size == 8) {
+                	buttons[row][column].setIcon(flagIcon);
+            	}
+            	else if (size == 14) {
+                	buttons[row][column].setIcon(flagIcon2);
+            	}
+            	else {
+                	buttons[row][column].setIcon(flagIcon3);
+            	}
             }
             else if(cellGUIs[row][column].getState() == CellGUI.States.FLAGGED) {
             	cellGUIs[row][column].hide();
@@ -112,6 +127,10 @@ public class GUI implements ActionListener, MouseListener {
             
             System.out.println("Right Clicked on row: " + button.getClientProperty("row") +
                     ", column: " + button.getClientProperty("column"));
+        }
+        
+        else if (e.getButton() == 1) {
+        	
         }
     }
     
