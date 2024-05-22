@@ -110,31 +110,25 @@ public class GUI implements ActionListener, MouseListener {
             	buttons[row][column].setIcon(null);
             }
             
-            System.out.println("Right Clicked on button at row: " + button.getClientProperty("row") +
+            System.out.println("Right Clicked on row: " + button.getClientProperty("row") +
                     ", column: " + button.getClientProperty("column"));
         }
     }
     
-    //left mouse click
+    //left mouse click    
     public void actionPerformed(ActionEvent e) {
-        JButton button = (JButton) e.getSource();
-
-    	int row = (int) button.getClientProperty("row");
-        int column = (int) button.getClientProperty("column");
-    	
-    	if (e.getSource() == c1) {
+        if (e.getSource() == c1) {
             mapDifficulty(c1.getSelectedItem());
-        } else {
-            for (int i = 0; i < buttons.length; i++) {
-                for (int j = 0; j < buttons[0].length; j++) {
-                    if (e.getSource() == buttons[i][j]) {
-                        System.out.println("Clicked");
-                        cellGUIs[row][column].reveal();
-                    }
-                }
-            }
+        } else if (e.getSource() instanceof JButton) {
+            JButton button = (JButton) e.getSource();
+            int row = (int) button.getClientProperty("row");
+            int column = (int) button.getClientProperty("column");
+            
+            System.out.println("Clicked");
+            cellGUIs[row][column].reveal();
         }
     }
+
 
 	@Override
 	public void mousePressed(MouseEvent e) {
