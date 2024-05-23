@@ -16,7 +16,10 @@ public class GUI implements ActionListener, MouseListener {
     Icon flagIcon = new ImageIcon("assets/flag-80.png");
     Icon flagIcon2 = new ImageIcon("assets/flag-50.png");
     Icon flagIcon3 = new ImageIcon("assets/flag-20.png");
-
+    
+    Icon bombIcon= new ImageIcon("assets/bomb-80.png");
+    Icon bombIcon2 = new ImageIcon("assets/bomb-50.png");
+    Icon bombIcon3 = new ImageIcon("assets/bomb-20.png");
     
 
     Moves listOfMoves = new Moves(3);
@@ -39,6 +42,7 @@ public class GUI implements ActionListener, MouseListener {
         frame.pack();
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+        frame.setResizable(false);
         
         frame.setSize(800, 800);
 
