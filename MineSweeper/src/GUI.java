@@ -19,7 +19,7 @@ public class GUI implements ActionListener, MouseListener {
 
     
 
-    Moves listOfMoves = new Moves();
+    Moves listOfMoves = new Moves(3);
     static int size = 8; // Initialize size with a default value
 
     public static void main(String[] args) {
@@ -56,6 +56,7 @@ public class GUI implements ActionListener, MouseListener {
     }
 
     public void mapGenerator(int s) {
+    	
         if (buttonPanel != null) {
             frame.remove(buttonPanel);
         }
@@ -156,7 +157,7 @@ public class GUI implements ActionListener, MouseListener {
         
         if (e.getButton() == 3) {
         	
-            listOfMoves.makeMove((int) button.getClientProperty("row"), (int) button.getClientProperty("column"));
+            listOfMoves.makeMove((int) button.getClientProperty("row"), (int) button.getClientProperty("column"), true);
             
             if(cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
             	cellGUIs[row][column].flag();
@@ -193,9 +194,25 @@ public class GUI implements ActionListener, MouseListener {
             int row = (int) button.getClientProperty("row");
             int column = (int) button.getClientProperty("column");
             
+            listOfMoves.makeMove(row, column, false);
+            
             System.out.println("Clicked");
             cellGUIs[row][column].reveal();
         }
+    }
+    
+    private void undo() {
+    	Move m = listOfMoves.lastMove();
+    	int row = m.x;
+    	int col = m.y;
+    	if (cellGUIs[row][col].getValue() == -1) {
+    		listOfMoves.lives--;
+    		if (listOfMoves.lives<0) {
+    			//todo activate game over
+    		}
+    	}
+    	cellGUIs[row][col].hide();
+    	buttons[row][col].setIcon(null);
     }
 
 

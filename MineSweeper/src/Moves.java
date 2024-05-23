@@ -3,17 +3,19 @@ import java.util.Queue;
 import java.util.Stack;
 
 public class Moves {
-	private Stack<Pose2d> moves;
+	public int lives;
+	private Stack<Move> moves;
 	
-	public Moves() {
+	public Moves(int l) {
 		moves = new Stack<>();
+		lives = l;
 	}
 	
-	public void makeMove(int x, int y) {
-		moves.add(new Pose2d(x,y));
+	public void makeMove(int x, int y, boolean r) {
+		moves.add(new Move(x,y, r));
 	}
 	
-	public Pose2d lastMove() {
+	public Move lastMove() {
 		return moves.pop();
 	}
 	
