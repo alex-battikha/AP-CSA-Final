@@ -8,7 +8,10 @@ public class GUI implements ActionListener, MouseListener {
     JPanel buttonPanel;
     JButton[][] buttons;
     JComboBox<String> c1;
-
+    int numBombs;
+    int x;
+    int y;
+    
     CellGUI[][] cellGUIs;
     Icon flagIcon = new ImageIcon("assets/flag-80.png");
     Icon flagIcon2 = new ImageIcon("assets/flag-50.png");
@@ -60,7 +63,19 @@ public class GUI implements ActionListener, MouseListener {
         buttonPanel = new JPanel(new GridLayout(s, s));
         buttons = new JButton[s][s];
         cellGUIs = new CellGUI[s][s];
-
+        
+        
+        if(s==8) {
+        	numBombs = 10;
+        }
+        if(s==14) {
+        	numBombs = 40;
+        }
+        
+        if(s==20) {
+        	numBombs = 99;
+        }
+        
         for (int row = 0; row < s; row++) {
             for (int col = 0; col < s; col++) {
                 buttons[row][col] = new JButton();
@@ -75,7 +90,42 @@ public class GUI implements ActionListener, MouseListener {
                 buttons[row][col].setText("");
                 buttonPanel.add(buttons[row][col]);
                 
-                cellGUIs[row][col] = new CellGUI(0);
+//                cellGUIs[row][col] = new CellGUI(0);
+
+            }
+        }
+        
+        while(numBombs > 0) {
+        	x = (int)(Math.random()*(s));
+        	y = (int)(Math.random()*(s));
+
+        	if(cellGUIs[x][y] == null) {
+        		cellGUIs[x][y] = new CellGUI(-1);
+        		numBombs -=1;
+        		System.out.println("X: " + x + " Y: " + y);
+        		System.out.println(numBombs);
+        	}
+        	else {
+        		continue;
+        	}
+        }
+        
+        for (int row = 0; row < s; row++) {
+            for (int col = 0; col < s; col++) {
+            	if(cellGUIs[row][col]==null) {
+            		int num = 0;
+            		for(int i = row-1; i<=row+1 ; i++) {
+            			for(int j = col-1; j<=col+1; j++) {
+            				if((i>= 0 && j>=0)&&(i<s && j<s)) {
+            					if(cellGUIs[i][j] != null) {
+                					num +=1;
+                				}
+            				}
+            				
+            			}
+            		}
+            		cellGUIs[row][col] = new CellGUI(num);
+            	}
 
             }
         }
