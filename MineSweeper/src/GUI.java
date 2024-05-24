@@ -3,7 +3,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class GUI implements ActionListener, MouseListener {
+
+public class GUI implements ActionListener, MouseListener, KeyListener {
     JFrame frame;
     JPanel buttonPanel;
     JButton[][] buttons;
@@ -21,6 +22,11 @@ public class GUI implements ActionListener, MouseListener {
     Icon bombIcon2 = new ImageIcon("assets/bomb-50.png");
     Icon bombIcon3 = new ImageIcon("assets/bomb-20.png");
     
+    Icon startscreen = new ImageIcon("assets/start screen.png");
+    boolean startGame = false;
+    
+    JLabel screen;
+    
 
     Moves listOfMoves = new Moves(3);
     static int size = 8; // Initialize size with a default value
@@ -35,6 +41,10 @@ public class GUI implements ActionListener, MouseListener {
     public void createAndShowGUI() {
         frame = new JFrame("MineSweeper");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        screen.setIcon(startscreen);
+        while (!startGame) {
+        	
+        }
         
         dropdownGen();
         mapGenerator(size);
@@ -47,6 +57,8 @@ public class GUI implements ActionListener, MouseListener {
         frame.setSize(800, 800);
 
     }
+    
+    
 
     public void dropdownGen() {
         String[] s1 = {"Easy", "Medium", "Hard"};
@@ -219,7 +231,6 @@ public class GUI implements ActionListener, MouseListener {
     	buttons[row][col].setIcon(null);
     }
 
-
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
@@ -241,6 +252,27 @@ public class GUI implements ActionListener, MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		// TODO Auto-generated method stub
+    	if (e.getKeyCode() == KeyEvent.VK_Z)
+    		startGame = true;
+    	System.out.println("key pressed");
 		
 	}
 }
