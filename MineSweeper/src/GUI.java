@@ -41,6 +41,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
     public void createAndShowGUI() {
         frame = new JFrame("MineSweeper");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        screen = new JLabel();
+        frame.add(screen);
         screen.setIcon(startscreen);
         while (!startGame) {
         	
