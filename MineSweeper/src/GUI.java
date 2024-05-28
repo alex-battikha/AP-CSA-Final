@@ -22,6 +22,38 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
     Icon bombIcon2 = new ImageIcon("assets/bomb-50.png");
     Icon bombIcon3 = new ImageIcon("assets/bomb-20.png");
     
+    Icon oneIcon80 = new ImageIcon("assets/nums/1-80.png");
+    Icon oneIcon50 = new ImageIcon("assets/nums/1-50.png");
+    Icon oneIcon20 = new ImageIcon("assets/nums/1-20.png");
+    
+    Icon twoIcon80 = new ImageIcon("assets/nums/2-80.png");
+    Icon twoIcon50 = new ImageIcon("assets/nums/2-50.png");
+    Icon twoIcon20 = new ImageIcon("assets/nums/2-20.png");
+
+    Icon threeIcon80 = new ImageIcon("assets/nums/3-80.png");
+    Icon threeIcon50 = new ImageIcon("assets/nums/3-50.png");
+    Icon threeIcon20 = new ImageIcon("assets/nums/3-20.png");
+    
+    Icon fourIcon80 = new ImageIcon("assets/nums/4-80.png");
+    Icon fourIcon50 = new ImageIcon("assets/nums/4-50.png");
+    Icon fourIcon20 = new ImageIcon("assets/nums/4-20.png");
+    
+    Icon fiveIcon80 = new ImageIcon("assets/nums/5-80.png");
+    Icon fiveIcon50 = new ImageIcon("assets/nums/5-50.png");
+    Icon fiveIcon20 = new ImageIcon("assets/nums/5-20.png");
+
+    Icon sixIcon80 = new ImageIcon("assets/nums/6-80.png");
+    Icon sixIcon50 = new ImageIcon("assets/nums/6-50.png");
+    Icon sixIcon20 = new ImageIcon("assets/nums/6-20.png");
+    
+    Icon sevenIcon80 = new ImageIcon("assets/nums/7-80.png");
+    Icon sevenIcon50 = new ImageIcon("assets/nums/7-50.png");
+    Icon sevenIcon20 = new ImageIcon("assets/nums/7-20.png");
+    
+    Icon eightIcon80 = new ImageIcon("assets/nums/8-80.png");
+    Icon eightIcon50 = new ImageIcon("assets/nums/8-50.png");
+    Icon eightIcon20 = new ImageIcon("assets/nums/8-20.png");
+    
     Icon startscreen = new ImageIcon("assets/start screen.png");
     boolean startGame = false;
     
@@ -220,94 +252,93 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
             		
                 	buttons[row][column].setBackground(Color.white);
                 	
-                	
             		break;
             	case 1:
             		if(size == 8) {
-                    	buttons[row][column].setIcon(flagIcon);
+                    	buttons[row][column].setIcon(oneIcon80);
                 	}
                 	else if (size == 14) {
-                    	buttons[row][column].setIcon(flagIcon2);
+                    	buttons[row][column].setIcon(oneIcon50);
                 	}
                 	else {
-                    	buttons[row][column].setIcon(flagIcon3);
+                    	buttons[row][column].setIcon(oneIcon20);
                 	}
             		break;
 	            case 2:
 	        		if(size == 8) {
-	                	buttons[row][column].setIcon(flagIcon);
+	                	buttons[row][column].setIcon(twoIcon80);
 	            	}
 	            	else if (size == 14) {
-	                	buttons[row][column].setIcon(flagIcon2);
+	                	buttons[row][column].setIcon(twoIcon50);
 	            	}
 	            	else {
-	                	buttons[row][column].setIcon(flagIcon3);
+	                	buttons[row][column].setIcon(twoIcon20);
 	            	}
 	        		break;
 	            case 3:
 	        		if(size == 8) {
-	                	buttons[row][column].setIcon(flagIcon);
+	                	buttons[row][column].setIcon(threeIcon80);
 	            	}
 	            	else if (size == 14) {
-	                	buttons[row][column].setIcon(flagIcon2);
+	                	buttons[row][column].setIcon(threeIcon50);
 	            	}
 	            	else {
-	                	buttons[row][column].setIcon(flagIcon3);
+	                	buttons[row][column].setIcon(threeIcon20);
 	            	}
 	        		break;
 	            case 4:
 	        		if(size == 8) {
-	                	buttons[row][column].setIcon(flagIcon);
+	                	buttons[row][column].setIcon(fourIcon80);
 	            	}
 	            	else if (size == 14) {
-	                	buttons[row][column].setIcon(flagIcon2);
+	                	buttons[row][column].setIcon(fourIcon50);
 	            	}
 	            	else {
-	                	buttons[row][column].setIcon(flagIcon3);
+	                	buttons[row][column].setIcon(fourIcon20);
 	            	}
 	        		break;
 	            case 5:
 	        		if(size == 8) {
-	                	buttons[row][column].setIcon(flagIcon);
+	                	buttons[row][column].setIcon(fiveIcon80);
 	            	}
 	            	else if (size == 14) {
-	                	buttons[row][column].setIcon(flagIcon2);
+	                	buttons[row][column].setIcon(fiveIcon50);
 	            	}
 	            	else {
-	                	buttons[row][column].setIcon(flagIcon3);
+	                	buttons[row][column].setIcon(fiveIcon20);
 	            	}
 	        		break;
 	            case 6:
 	        		if(size == 8) {
-	                	buttons[row][column].setIcon(flagIcon);
+	                	buttons[row][column].setIcon(sixIcon80);
 	            	}
 	            	else if (size == 14) {
-	                	buttons[row][column].setIcon(flagIcon2);
+	                	buttons[row][column].setIcon(sixIcon50);
 	            	}
 	            	else {
-	                	buttons[row][column].setIcon(flagIcon3);
+	                	buttons[row][column].setIcon(sixIcon20);
 	            	}
 	        		break;
 	            case 7:
 	        		if(size == 8) {
-	                	buttons[row][column].setIcon(flagIcon);
+	                	buttons[row][column].setIcon(sevenIcon80);
 	            	}
 	            	else if (size == 14) {
-	                	buttons[row][column].setIcon(flagIcon2);
+	                	buttons[row][column].setIcon(sevenIcon50);
 	            	}
 	            	else {
-	                	buttons[row][column].setIcon(flagIcon3);
+	                	buttons[row][column].setIcon(sevenIcon20);
 	            	}
 	        		break;
 	            case 8:
 	        		if(size == 8) {
-	                	buttons[row][column].setIcon(flagIcon);
+	                	buttons[row][column].setIcon(eightIcon80);
 	            	}
 	            	else if (size == 14) {
-	                	buttons[row][column].setIcon(flagIcon2);
+	                	buttons[row][column].setIcon(eightIcon50);
 	            	}
 	            	else {
-	                	buttons[row][column].setIcon(flagIcon3);
+	                	buttons[row][column].setIcon(eightIcon20);
 	            	}
 	        		break;
             }
@@ -366,14 +397,13 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		// TODO Auto-generated method stub
     	if (e.getKeyCode() == 90) {
     		startGame = true;
     		screen.setIcon(null);
 	    	dropdownGen();
 	        mapGenerator(size);
     	}
-    	System.out.println(e.getKeyCode());
+    	//System.out.println(e.getKeyCode());
 		
 	}
 }
