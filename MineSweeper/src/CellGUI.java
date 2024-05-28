@@ -15,6 +15,7 @@ public class CellGUI{
 	
 	public CellGUI(int v) {
 		value = v;
+		state = States.HIDDEN;
 	}
 	
 	public void setValue(int v) {
