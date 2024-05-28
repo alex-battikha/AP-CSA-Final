@@ -172,7 +172,6 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         
         if (e.getButton() == 3) {
         	
-            listOfMoves.makeMove((int) button.getClientProperty("row"), (int) button.getClientProperty("column"), true);
             
             if(cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
             	cellGUIs[row][column].flag();
@@ -185,10 +184,12 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
             	else {
                 	buttons[row][column].setIcon(flagIcon3);
             	}
+                listOfMoves.makeMove((int) button.getClientProperty("row"), (int) button.getClientProperty("column"), true);
             }
             else if(cellGUIs[row][column].getState() == CellGUI.States.FLAGGED) {
             	cellGUIs[row][column].hide();
             	buttons[row][column].setIcon(null);
+                listOfMoves.makeMove((int) button.getClientProperty("row"), (int) button.getClientProperty("column"), true);
             }
             
             System.out.println("Right Clicked on row: " + button.getClientProperty("row") +
@@ -209,7 +210,12 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
             int row = (int) button.getClientProperty("row");
             int column = (int) button.getClientProperty("column");
             
-            listOfMoves.makeMove(row, column, false);
+            if (cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
+            	listOfMoves.makeMove(row, column, false);
+            	cellGUIs[row][column].reveal();
+            	buttons[row][column].setIcon(/*TODO*/ null);
+            }
+            
             
             System.out.println("Clicked");
             cellGUIs[row][column].reveal();
