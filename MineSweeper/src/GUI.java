@@ -216,6 +216,12 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
                 System.out.println("Clicked");
                 cellGUIs[row][column].reveal();
             	switch (cellGUIs[row][column].getValue()) {
+            	case 0:
+            		
+                	buttons[row][column].setBackground(Color.white);
+                	
+                	
+            		break;
             	case 1:
             		if(size == 8) {
                     	buttons[row][column].setIcon(flagIcon);
@@ -226,6 +232,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
                 	else {
                     	buttons[row][column].setIcon(flagIcon3);
                 	}
+            		break;
 	            case 2:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(flagIcon);
@@ -236,6 +243,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	            	else {
 	                	buttons[row][column].setIcon(flagIcon3);
 	            	}
+	        		break;
 	            case 3:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(flagIcon);
@@ -246,6 +254,18 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	            	else {
 	                	buttons[row][column].setIcon(flagIcon3);
 	            	}
+	        		break;
+	            case 4:
+	        		if(size == 8) {
+	                	buttons[row][column].setIcon(flagIcon);
+	            	}
+	            	else if (size == 14) {
+	                	buttons[row][column].setIcon(flagIcon2);
+	            	}
+	            	else {
+	                	buttons[row][column].setIcon(flagIcon3);
+	            	}
+	        		break;
 	            case 5:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(flagIcon);
@@ -256,6 +276,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	            	else {
 	                	buttons[row][column].setIcon(flagIcon3);
 	            	}
+	        		break;
 	            case 6:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(flagIcon);
@@ -266,6 +287,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	            	else {
 	                	buttons[row][column].setIcon(flagIcon3);
 	            	}
+	        		break;
 	            case 7:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(flagIcon);
@@ -276,6 +298,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	            	else {
 	                	buttons[row][column].setIcon(flagIcon3);
 	            	}
+	        		break;
 	            case 8:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(flagIcon);
@@ -286,6 +309,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	            	else {
 	                	buttons[row][column].setIcon(flagIcon3);
 	            	}
+	        		break;
             }
         	}
         }
