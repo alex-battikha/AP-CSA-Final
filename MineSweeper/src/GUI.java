@@ -213,12 +213,81 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
             if (cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
             	listOfMoves.makeMove(row, column, false);
             	cellGUIs[row][column].reveal();
-            	buttons[row][column].setIcon(/*TODO*/ null);
+                System.out.println("Clicked");
+                cellGUIs[row][column].reveal();
+            	switch (cellGUIs[row][column].getValue()) {
+            	case 1:
+            		if(size == 8) {
+                    	buttons[row][column].setIcon(flagIcon);
+                	}
+                	else if (size == 14) {
+                    	buttons[row][column].setIcon(flagIcon2);
+                	}
+                	else {
+                    	buttons[row][column].setIcon(flagIcon3);
+                	}
+	            case 2:
+	        		if(size == 8) {
+	                	buttons[row][column].setIcon(flagIcon);
+	            	}
+	            	else if (size == 14) {
+	                	buttons[row][column].setIcon(flagIcon2);
+	            	}
+	            	else {
+	                	buttons[row][column].setIcon(flagIcon3);
+	            	}
+	            case 3:
+	        		if(size == 8) {
+	                	buttons[row][column].setIcon(flagIcon);
+	            	}
+	            	else if (size == 14) {
+	                	buttons[row][column].setIcon(flagIcon2);
+	            	}
+	            	else {
+	                	buttons[row][column].setIcon(flagIcon3);
+	            	}
+	            case 5:
+	        		if(size == 8) {
+	                	buttons[row][column].setIcon(flagIcon);
+	            	}
+	            	else if (size == 14) {
+	                	buttons[row][column].setIcon(flagIcon2);
+	            	}
+	            	else {
+	                	buttons[row][column].setIcon(flagIcon3);
+	            	}
+	            case 6:
+	        		if(size == 8) {
+	                	buttons[row][column].setIcon(flagIcon);
+	            	}
+	            	else if (size == 14) {
+	                	buttons[row][column].setIcon(flagIcon2);
+	            	}
+	            	else {
+	                	buttons[row][column].setIcon(flagIcon3);
+	            	}
+	            case 7:
+	        		if(size == 8) {
+	                	buttons[row][column].setIcon(flagIcon);
+	            	}
+	            	else if (size == 14) {
+	                	buttons[row][column].setIcon(flagIcon2);
+	            	}
+	            	else {
+	                	buttons[row][column].setIcon(flagIcon3);
+	            	}
+	            case 8:
+	        		if(size == 8) {
+	                	buttons[row][column].setIcon(flagIcon);
+	            	}
+	            	else if (size == 14) {
+	                	buttons[row][column].setIcon(flagIcon2);
+	            	}
+	            	else {
+	                	buttons[row][column].setIcon(flagIcon3);
+	            	}
             }
-            
-            
-            System.out.println("Clicked");
-            cellGUIs[row][column].reveal();
+        	}
         }
     }
     
