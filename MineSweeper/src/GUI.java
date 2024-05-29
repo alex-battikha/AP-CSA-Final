@@ -2,6 +2,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.TimeUnit;
 
 
 public class GUI implements ActionListener, MouseListener, KeyListener {
@@ -55,7 +56,10 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
     Icon eightIcon20 = new ImageIcon("assets/nums/8-20.png");
     
     Icon startscreen = new ImageIcon("assets/start screen.png");
+    Icon gamescreen = new ImageIcon("assets/gameOver.png");
+
     boolean startGame = false;
+    boolean lose = false;
     
     JLabel screen;
     
@@ -158,6 +162,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         	}
         }
         
+        boolean firstSquare = false;
         for (int row = 0; row < s; row++) {
             for (int col = 0; col < s; col++) {
             	if(cellGUIs[row][col]==null) {
@@ -165,7 +170,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
             		for(int i = row-1; i<=row+1 ; i++) {
             			for(int j = col-1; j<=col+1; j++) {
             				if((i>= 0 && j>=0)&&(i<s && j<s)) {
-            					if(cellGUIs[i][j] != null) {
+            					if(cellGUIs[i][j] != null && cellGUIs[i][j].getValue() == -1) {
                 					num +=1;
                 				}
             				}
@@ -173,6 +178,12 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
             			}
             		}
             		cellGUIs[row][col] = new CellGUI(num);
+					if (!firstSquare && cellGUIs[row][col].getValue() == 0) {
+						firstSquare = true;
+						cellGUIs[row][col].reveal();
+	                	buttons[row][col].setBackground(Color.white);
+						
+					}
             	}
 
             }
@@ -202,7 +213,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         
         
         
-        if (e.getButton() == 3) {
+        if (e.getButton() == 3 && !lose) {
         	
             
             if(cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
@@ -229,29 +240,18 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         }
         
         else if (e.getButton() == 1) {
-        	
-        }
-    }
-    
-    //left mouse click    
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == c1) {
-            mapDifficulty(c1.getSelectedItem());
-        } else if (e.getSource() instanceof JButton) {
-            JButton button = (JButton) e.getSource();
-            int row = (int) button.getClientProperty("row");
-            int column = (int) button.getClientProperty("column");
+        	//System.out.println("Left Clicked");
             
-            if (cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
+            if (cellGUIs[row][column].getState() == CellGUI.States.HIDDEN && !lose) {
             	listOfMoves.makeMove(row, column, false);
             	cellGUIs[row][column].reveal();
                 System.out.println("Clicked");
                 cellGUIs[row][column].reveal();
+                System.out.println("value: " + cellGUIs[row][column].getValue());
             	switch (cellGUIs[row][column].getValue()) {
             	case 0:
             		
                 	buttons[row][column].setBackground(Color.white);
-                	
             		break;
             	case 1:
             		if(size == 8) {
@@ -341,8 +341,37 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	                	buttons[row][column].setIcon(eightIcon20);
 	            	}
 	        		break;
-            }
+	            case -1:
+
+	        		if(size == 8) {
+	                	buttons[row][column].setIcon(bombIcon);
+	            	}
+	            	else if (size == 14) {
+	                	buttons[row][column].setIcon(bombIcon2);
+	            	}
+	            	else {
+	                	buttons[row][column].setIcon(bombIcon3);
+	            	}
+	        		try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+	        		frame.dispatchEvent(new WindowEvent(frame, WindowEvent.WINDOW_CLOSING));
+
+	        		lose = true;
+            	}
         	}
+        } 
+    }
+    
+    //left mouse click    
+    public void actionPerformed(ActionEvent e) {
+
+        if (e.getSource() == c1) {
+            lose = false;
+            mapDifficulty(c1.getSelectedItem());
         }
     }
     
@@ -350,10 +379,13 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
     	Move m = listOfMoves.lastMove();
     	int row = m.x;
     	int col = m.y;
-    	if (cellGUIs[row][col].getValue() == -1) {
+    	if (lose) {
     		listOfMoves.lives--;
     		if (listOfMoves.lives<0) {
     			//todo activate game over
+    		}
+    		else {
+    			lose = false;
     		}
     	}
     	cellGUIs[row][col].hide();
