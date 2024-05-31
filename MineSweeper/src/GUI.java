@@ -13,24 +13,29 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
     int numBombs;
     int x;
     int y;
+    //variables for gui and positioning
     
     CellGUI[][] cellGUIs;
     Icon flagIcon = new ImageIcon("assets/flag-80.png");
     Icon flagIcon2 = new ImageIcon("assets/flag-50.png");
     Icon flagIcon3 = new ImageIcon("assets/flag-20.png");
     
+    //bombIcon assets for easy/med/hard map
     Icon bombIcon= new ImageIcon("assets/bomb-80.png");
     Icon bombIcon2 = new ImageIcon("assets/bomb-50.png");
     Icon bombIcon3 = new ImageIcon("assets/bomb-20.png");
     
+    //80 is for the easy map
     Icon oneIcon80 = new ImageIcon("assets/nums/1-80.png");
     Icon oneIcon50 = new ImageIcon("assets/nums/1-50.png");
     Icon oneIcon20 = new ImageIcon("assets/nums/1-20.png");
     
+    //50 is for the med map
     Icon twoIcon80 = new ImageIcon("assets/nums/2-80.png");
     Icon twoIcon50 = new ImageIcon("assets/nums/2-50.png");
     Icon twoIcon20 = new ImageIcon("assets/nums/2-20.png");
 
+    //30 is for the hard map
     Icon threeIcon80 = new ImageIcon("assets/nums/3-80.png");
     Icon threeIcon50 = new ImageIcon("assets/nums/3-50.png");
     Icon threeIcon20 = new ImageIcon("assets/nums/3-20.png");
@@ -50,24 +55,27 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
     Icon sevenIcon80 = new ImageIcon("assets/nums/7-80.png");
     Icon sevenIcon50 = new ImageIcon("assets/nums/7-50.png");
     Icon sevenIcon20 = new ImageIcon("assets/nums/7-20.png");
-    
+   
+    //number assets for revealed
     Icon eightIcon80 = new ImageIcon("assets/nums/8-80.png");
     Icon eightIcon50 = new ImageIcon("assets/nums/8-50.png");
     Icon eightIcon20 = new ImageIcon("assets/nums/8-20.png");
     
     Icon startscreen = new ImageIcon("assets/start screen.png");
     Icon gamescreen = new ImageIcon("assets/gameOver.png");
-
+    //asset creation for different difficulties/icon sizes
     boolean startGame = false;
     boolean lose = false;
-    
+    //variables for controlling game creation
     JLabel screen;
     
     SimpleAudioPlayer bgMusic = new SimpleAudioPlayer("assets/audio/bg.wav", true);
-    
+    //music player
     Moves listOfMoves = new Moves(3);
     static int size = 8; // Initialize size with a default value
 
+    
+    //main function that runs gui
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             GUI gui = new GUI();
@@ -91,10 +99,11 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         frame.setResizable(false);
         
         frame.setSize(800, 800);
+        //creates all frames
     }
     
     
-
+    //creates drop down generation for difficulties 
     public void dropdownGen() {
         String[] s1 = {"Easy", "Medium", "Hard"};
         c1 = new JComboBox<>(s1);
@@ -104,8 +113,9 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         northPanel.add(c1, BorderLayout.NORTH);
 
         frame.add(northPanel, BorderLayout.NORTH);
+        
     }
-
+    // creates map with bombs and portrays it
     public void mapGenerator(int s) {
     	
         if (buttonPanel != null) {
@@ -128,6 +138,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         	numBombs = 99;
         }
         
+        //generates the buttons using Jbutton and Jframe
         for (int row = 0; row < s; row++) {
             for (int col = 0; col < s; col++) {
                 buttons[row][col] = new JButton();
@@ -146,7 +157,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 
             }
         }
-        
+        //generates all bombs on empty 2d array
         while(numBombs > 0) {
         	x = (int)(Math.random()*(s));
         	y = (int)(Math.random()*(s));
@@ -162,6 +173,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         	}
         }
         
+        //generates all other cells that aren't bombs with values(that indicate number of bombs around cell)
         boolean firstSquare = false;
         for (int row = 0; row < s; row++) {
             for (int col = 0; col < s; col++) {
@@ -191,7 +203,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 
         frame.add(buttonPanel, BorderLayout.CENTER);
     }
-
+    //generates map based on difficulty
     public void mapDifficulty(Object object) {
         if (object.equals("Easy")) {
             size = 8;
@@ -215,7 +227,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
         
         if (e.getButton() == 3 && !lose) {
         	
-            
+            //right mouse click for flag button
             if(cellGUIs[row][column].getState() == CellGUI.States.HIDDEN) {
             	cellGUIs[row][column].flag();
             	if(size == 8) {
@@ -248,11 +260,15 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
                 System.out.println("Clicked");
                 cellGUIs[row][column].reveal();
                 System.out.println("value: " + cellGUIs[row][column].getValue());
+                //all the different cases for different values portrayed on cell
+                //different cases for different sizes/difficulty of map
             	switch (cellGUIs[row][column].getValue()) {
             	case 0:
             		
                 	buttons[row][column].setBackground(Color.white);
             		break;
+            		
+                //different cases for different sizes/difficulty of map
             	case 1:
             		if(size == 8) {
                     	buttons[row][column].setIcon(oneIcon80);
@@ -264,7 +280,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
                     	buttons[row][column].setIcon(oneIcon20);
                 	}
             		break;
-	            case 2:
+                //different cases for different sizes/difficulty of map
+            	case 2:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(twoIcon80);
 	            	}
@@ -275,7 +292,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	                	buttons[row][column].setIcon(twoIcon20);
 	            	}
 	        		break;
-	            case 3:
+	        	//different cases for different sizes/difficulty of map
+            	case 3:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(threeIcon80);
 	            	}
@@ -286,7 +304,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	                	buttons[row][column].setIcon(threeIcon20);
 	            	}
 	        		break;
-	            case 4:
+	        	//different cases for different sizes/difficulty of map
+            	case 4:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(fourIcon80);
 	            	}
@@ -297,7 +316,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	                	buttons[row][column].setIcon(fourIcon20);
 	            	}
 	        		break;
-	            case 5:
+	        	//different cases for different sizes/difficulty of map
+            	case 5:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(fiveIcon80);
 	            	}
@@ -308,7 +328,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	                	buttons[row][column].setIcon(fiveIcon20);
 	            	}
 	        		break;
-	            case 6:
+	        	//different cases for different sizes/difficulty of map
+            	case 6:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(sixIcon80);
 	            	}
@@ -319,7 +340,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	                	buttons[row][column].setIcon(sixIcon20);
 	            	}
 	        		break;
-	            case 7:
+	        	//different cases for different sizes/difficulty of map
+            	case 7:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(sevenIcon80);
 	            	}
@@ -330,7 +352,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	                	buttons[row][column].setIcon(sevenIcon20);
 	            	}
 	        		break;
-	            case 8:
+	        	//different cases for different sizes/difficulty of map
+            	case 8:
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(eightIcon80);
 	            	}
@@ -341,7 +364,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	                	buttons[row][column].setIcon(eightIcon20);
 	            	}
 	        		break;
-	            case -1:
+	        	//different cases for different sizes/difficulty of map
+            	case -1:
 
 	        		if(size == 8) {
 	                	buttons[row][column].setIcon(bombIcon);
@@ -374,6 +398,8 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
             mapDifficulty(c1.getSelectedItem());
         }
     }
+    
+    //uses data structures to implement an undo method
     
     private void undo() {
     	Move m = listOfMoves.lastMove();
@@ -428,6 +454,7 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	}
 
 	@Override
+	//checks to see if the Z button is clicked for start screen
 	public void keyPressed(KeyEvent e) {
     	if (e.getKeyCode() == 90) {
     		startGame = true;
