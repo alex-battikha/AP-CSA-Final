@@ -456,13 +456,16 @@ public class GUI implements ActionListener, MouseListener, KeyListener {
 	@Override
 	//checks to see if the Z button is clicked for start screen
 	public void keyPressed(KeyEvent e) {
-    	if (e.getKeyCode() == 90) {
+    	if (e.getKeyCode() == e.VK_SPACE) {
     		startGame = true;
     		screen.setIcon(null);
 	    	dropdownGen();
 	        mapGenerator(size);
     	}
     	//System.out.println(e.getKeyCode());
+    	if (e.getKeyCode()== 90) {
+    		undo();
+    	}
 		
 	}
 }
